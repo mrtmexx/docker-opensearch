@@ -4,8 +4,18 @@ Custom OpenSearch 3.5.0 image with `analysis-icu` plugin.
 
 ## Build the image
 
+Single platform:
+
 ```bash
 docker build -t mrtmexx/opensearch:3.5.0 .
+```
+
+Multi-platform (amd64 + arm64), build and push in one step:
+
+```bash
+docker buildx create --name multiarch --use
+docker buildx build --platform linux/amd64,linux/arm64 \
+  -t mrtmexx/opensearch:3.5.0 --push .
 ```
 
 ## Run the container
