@@ -1,0 +1,50 @@
+# OpenSearch with ICU Analysis Plugin
+
+Custom OpenSearch 3.5.0 image with `analysis-icu` plugin.
+
+## Build the image
+
+```bash
+docker build -t mrtmexx/opensearch:3.5.0 .
+```
+
+## Run the container
+
+```bash
+docker run -d \
+  --name opensearch \
+  -p 9200:9200 \
+  -p 9600:9600 \
+  -e "discovery.type=single-node" \
+  -e "OPENSEARCH_INITIAL_ADMIN_PASSWORD=<YOUR_PASSWORD>" \
+  mrtmexx/opensearch:3.5.0
+```
+
+## Publish to DockerHub
+
+1. Log in to DockerHub:
+
+```bash
+docker login
+```
+
+2. Push the image:
+
+```bash
+docker push mrtmexx/opensearch:3.5.0
+```
+
+3. (Optional) Add the `latest` tag:
+
+```bash
+docker tag mrtmexx/opensearch:3.5.0 mrtmexx/opensearch-icu:latest
+docker push mrtmexx/opensearch-icu:latest
+```
+
+## Verify
+
+```bash
+curl -k -u admin:<YOUR_PASSWORD> https://localhost:9200/_cat/plugins
+```
+
+The output should include `analysis-icu`.
