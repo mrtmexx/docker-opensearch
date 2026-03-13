@@ -1,13 +1,13 @@
 # OpenSearch with Analysis Plugins
 
-Custom OpenSearch 3.4.0 image with `analysis-icu`, `analysis-kuromoji`, and `analysis-phonetic` plugins.
+Custom OpenSearch 3.5.0 image with `analysis-icu`, `analysis-kuromoji`, and `analysis-phonetic` plugins.
 
 ## Build the image
 
 Single platform:
 
 ```bash
-docker build -t mrtmexx/opensearch:3.4.0 .
+docker build -t mrtmexx/opensearch:3.5.0 .
 ```
 
 Multi-platform (amd64 + arm64), build and push in one step:
@@ -15,7 +15,7 @@ Multi-platform (amd64 + arm64), build and push in one step:
 ```bash
 docker buildx create --name multiarch --use
 docker buildx build --platform linux/amd64,linux/arm64 \
-  -t mrtmexx/opensearch:3.4.0 --push .
+  -t mrtmexx/opensearch:3.5.0 --push .
 ```
 
 ## Run the container
@@ -27,7 +27,7 @@ docker run -d \
   -p 9600:9600 \
   -e "discovery.type=single-node" \
   -e "OPENSEARCH_INITIAL_ADMIN_PASSWORD=<YOUR_PASSWORD>" \
-  mrtmexx/opensearch:3.4.0
+  mrtmexx/opensearch:3.5.0
 ```
 
 ## Publish to DockerHub
@@ -41,14 +41,13 @@ docker login
 2. Push the image:
 
 ```bash
-docker push mrtmexx/opensearch:3.4.0
+docker push mrtmexx/opensearch:3.5.0
 ```
 
 3. (Optional) Add the `latest` tag:
 
 ```bash
-docker tag mrtmexx/opensearch:3.4.0 mrtmexx/opensearch-icu:latest
-docker push mrtmexx/opensearch-icu:latest
+docker push mrtmexx/opensearch:latest
 ```
 
 ## Verify
